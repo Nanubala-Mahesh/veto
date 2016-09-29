@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928152355) do
+ActiveRecord::Schema.define(version: 20160929081907) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "name"
@@ -47,9 +47,8 @@ ActiveRecord::Schema.define(version: 20160928152355) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
-    t.integer  "institution_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "highlights", force: :cascade do |t|
@@ -59,11 +58,37 @@ ActiveRecord::Schema.define(version: 20160928152355) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "institution_facilities", force: :cascade do |t|
+    t.integer  "institution_id"
+    t.integer  "facility_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.text     "address"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "email_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.integer  "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "phones", force: :cascade do |t|
+    t.string   "contact"
+    t.integer  "institution_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "results", force: :cascade do |t|

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :institutions
   resources :states
   resources :cities
   resources :locations

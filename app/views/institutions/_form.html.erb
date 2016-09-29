@@ -1,0 +1,69 @@
+<%= form_for(@institution) do |f| %>
+<% if @institution.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@institution.errors.count, "error") %> prohibited this institution from being saved:</h2>
+
+  <ul>
+    <% @institution.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :description %><br>
+  <%= f.text_area :description %>
+</div>
+<div class="field">
+  <%= f.label :address %><br>
+  <%= f.text_area :address %>
+</div>
+<div class="field">
+  <%= f.label :email_id %><br>
+  <%= f.text_field :email_id %>
+</div>
+
+
+
+<div class="form-group">
+  <label>Select Facilities </label><br/>
+  <%= f.collection_check_boxes :facility_ids, Facility.all, :id, :name do |b| %>
+  <%= b.check_box %>
+  <%= b.label %>
+  <br/>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+<div class="field">
+  <%= f.label :state_id %><br>
+  <%= f.collection_select :state_id, State.all, :id, :name, {prompt: "Select State"} %>
+</div>
+
+
+
+
+<div class="field">
+  <%= f.label :city_id %><br>
+  <%= f.collection_select :city_id, City.all, :id, :name, {prompt: "Select City"} %>
+</div>
+<div class="field">
+  <%= f.label :location_id %><br>
+  <%= f.collection_select :location_id, Location.all, :id, :name, {prompt: "Select Location"} %>
+</div>
+
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

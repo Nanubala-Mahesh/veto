@@ -1,0 +1,4 @@
+class InstitutionFacility < ActiveRecord::Base
+	belongs_to :facility
+	belongs_to :institution
+end
